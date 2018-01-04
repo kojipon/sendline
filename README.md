@@ -1,5 +1,5 @@
 # sendline
-This is a sample for sending messages with LINE.
+This is a tool for sending messages with LINE.
 
 # Synopsis
 
