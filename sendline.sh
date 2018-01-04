@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MESSAGE=$(test -p /dev/stdin && cat - || printf %q "$1")
+MESSAGE=$(test -p /dev/stdin && cat - || echo $1)
 
 ENV_FILE=$(cd $(dirname $0);pwd)'/.env'
 source $ENV_FILE
@@ -16,4 +16,4 @@ curl -q -s -X POST \
   https://api.line.me/v2/bot/message/multicast \
   -H "Content-Type: application/json; charset=UTF-8" \
   -H "Authorization: Bearer $API_TOKEN" \
-  -d "{\"to\": [\"$USER_ID\"], \"messages\": [{\"type\": \"text\", \"text\": \"$MESSAGE\"}] }"
+  -d "{\"to\": [\"$USER_ID\"], \"messages\": [{\"type\": \"text\", \"text\": \"$MESSAGE\"}] }" > /dev/null
